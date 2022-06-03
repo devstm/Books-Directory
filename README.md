@@ -1,10 +1,6 @@
 Books Directory
 ===
 
-## Table of Contents
-
-[TOC]
-
 ## Introduce
 Book directory is an api that allows users to react with Database and practice CRUD  (Create, Read, Update, Delete) operations on books and book authors and search for book by name and author name.
 
