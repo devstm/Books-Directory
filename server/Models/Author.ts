@@ -1,18 +1,8 @@
-import { Table, Column, Model,  DataType, AutoIncrement, PrimaryKey } from 'sequelize-typescript'
-import { Optional } from 'sequelize'
-const {STRING, INTEGER} = DataType;
-
-type Author = {
-  id: number;
-  name: string;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-interface AuthorsModel extends Optional<Author, 'id'> {}
+import { Table, Column, Model,  DataType } from 'sequelize-typescript'
+const {STRING} = DataType;
 
 @Table
-class authors extends Model<Author, AuthorsModel> {
+class authors extends Model {
   @Column(STRING)
     name: string| undefined;
 

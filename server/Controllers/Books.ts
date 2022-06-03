@@ -2,12 +2,12 @@ import { NextFunction, Response, Request } from 'express';
 import { Op } from 'sequelize';
 import sequelize from '../Models';
 import { idValidation, queryValidation } from '../Utils/Validations/authors';
-import { errorMiddleware } from '../Utils/middle';
+import { errorMiddleware } from '../Middleware/middle';
 import {
   createBookValidation,
   updateBookValidation,
 } from '../Utils/Validations/books';
-import { CustomError } from '../Utils/errors';
+import { CustomError } from '../Utils/Errors/custumError';
 const { books, authors } = sequelize.models;
 
 const include = [
@@ -69,7 +69,7 @@ const update = async (req: Request, res: Response, next: NextFunction) => {
       id,
     });
     const book = await books.update(ValidatedData, { where: { id } });
-    if (book[0] === 0) throw new Error('Book not found');
+    if (book[0] === 0) throw new CustomError('Book Not Found', 400);
     res.json({ msg: 'Book updated' });
   } catch (error: any) {
     errorMiddleware(error, next);
@@ -82,7 +82,7 @@ const destroy = async (req: Request, res: Response, next: NextFunction) => {
     const book = await books.destroy({
       where: { id },
     });
-    if (book === 0) throw new Error('Book not found');
+    if (book === 0) throw new CustomError('Book Not Found', 400);
     res.json({ msg: 'Book deleted' });
   } catch (error: any) {
     errorMiddleware(error, next);

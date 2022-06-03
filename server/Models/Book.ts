@@ -21,6 +21,6 @@ class books extends Model {
   author_id: number | undefined;
 
   @BelongsTo(() => authors)
-    author: any;
+    author: authors | undefined;
 }
 export default books;

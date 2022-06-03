@@ -1,14 +1,9 @@
 import { Router } from 'express';
-import {index, show, create, update, destroy, getAuthorByName} from '../Controllers/Author';
+import authorsRouter from './AuthorsRouter';
+import booksRouter from './BooksRouter';
 const router = Router();
 
-router.get('/authors', index);
-router.get('/authors/:id', show);
-router.get('/search', getAuthorByName);
-router.post('/create', create);
-router.put('/authors/:id', update);
-router.delete('/authors/:id', destroy);
-
-
+router.use(authorsRouter);
+router.use(booksRouter)
 
 export default router;
