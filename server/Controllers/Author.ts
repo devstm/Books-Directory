@@ -6,7 +6,6 @@ import {
   queryValidation,
   createValidation,
   updateValidation,
-  nameValidation,
 } from '../Utils/Validations/authors';
 import { errorMiddleware } from '../Utils/middle';
 
@@ -118,7 +117,7 @@ const getAuthorByName = async (
   next: NextFunction
 ) => {
   try {
-    const { name } = await nameValidation.validateAsync(req.query);
+    const { name } = await queryValidation.validateAsync(req.query);
     const { count, rows } = await sequelize.models.authors.findAndCountAll({
       where: {
         name: {
